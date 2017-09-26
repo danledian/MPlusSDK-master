@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        android:text="@string/about_user"
+        android:id="@+id/about_user_bt"
+        android:onClick="onViewClicked"
+        android:layout_margin="10dp"
+        style="@style/Item_Style"/>
+
+    <Button
+        android:text="@string/device_manager"
+        android:id="@+id/config_device_bt"
+        android:onClick="onViewClicked"
+        android:layout_margin="10dp"
+        style="@style/Item_Style"/>
+
+    <Button
+        android:text="@string/get_report"
+        android:id="@+id/get_report_bt"
+        android:onClick="onViewClicked"
+        android:layout_margin="10dp"
+        style="@style/Item_Style"/>
+
+</LinearLayout>

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MPlusSDKDemo</string>
+
+    <string name="config_device">配置设备</string>
+    <string name="about_user">用户相关</string>
+    <string name="get_report">获取报告</string>
+    <string name="login">登录</string>
+    <string name="register">注册(只需厂商ID)</string>
+    <string name="please_input_phone_number">请输入手机号码</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="please_input_code">请输入验证码</string>
+    <string name="server_error">服务器错误</string>
+    <string name="device_manager">设备管理</string>
+    <string name="query_bind_device">查询绑定设备</string>
+    <string name="please_input_wifi_name">请输入WIFI名称</string>
+    <string name="please_input_pwd">请输入WIFI密码</string>
+    <string name="start_config">开始配置</string>
+    <string name="set_auto_time">设置自动监测时间</string>
+    <string name="unbound">解除绑定</string>
+    <string name="loading">正在加载</string>
+
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Button
+        android:text="@string/query_bind_device"
+        android:id="@+id/query_bind_device_bt"
+        android:onClick="onViewClicked"
+        android:layout_margin="10dp"
+        style="@style/Item_Style"/>
+
+    <Button
+        android:text="@string/set_auto_time"
+        android:id="@+id/set_auto_time_bt"
+        android:onClick="onViewClicked"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        style="@style/Item_Style"/>
+
+    <Button
+        android:text="@string/config_device"
+        android:id="@+id/config_device_bt"
+        android:onClick="onViewClicked"
+        android:layout_margin="10dp"
+        style="@style/Item_Style"/>
+
+    <Button
+        android:text="@string/unbound"
+        android:id="@+id/unbound_bt"
+        android:onClick="onViewClicked"
+        android:visibility="gone"
+        android:layout_margin="10dp"
+        style="@style/Item_Style"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/content_tv"/>
+
+</LinearLayout>

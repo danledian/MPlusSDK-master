@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始时间"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2017-07-03T00:00:00.000Z"
+            android:id="@+id/startTime_et"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="结束时间"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2017-07-08T00:00:00.000Z"
+            android:id="@+id/endTime_et"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:text="查询1"
+        android:layout_marginTop="50dp"
+        android:id="@+id/query_end_bt"
+        android:onClick="onViewClicked"
+        style="@style/Item_Style"/>
+
+
+    <Button
+        android:text="查询2"
+        android:layout_marginTop="10dp"
+        android:id="@+id/query_bt"
+        android:onClick="onViewClicked"
+        style="@style/Item_Style"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:id="@+id/content_tv"/>
+
+
+</LinearLayout>
