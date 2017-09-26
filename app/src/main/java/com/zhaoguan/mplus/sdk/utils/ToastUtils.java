@@ -3,8 +3,6 @@ package com.zhaoguan.mplus.sdk.utils;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;

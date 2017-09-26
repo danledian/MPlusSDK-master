@@ -14,9 +14,7 @@ import android.widget.Toast;
 
 import com.lt.volley.http.VolleyResponse;
 import com.lt.volley.http.error.VolleyError;
-import com.zhaoguan.mplus.sdk.bean.Constants;
 import com.zhaoguan.mpluslibs.IMPlusObject;
-import com.zhaoguan.mpluslibs.MPlusDevice;
 import com.zhaoguan.mpluslibs.MPlusUser;
 import com.zhaoguan.mpluslibs.entity.UserLab;
 
@@ -64,7 +62,7 @@ public class LoginActivity extends BActivity {
         if (!TextUtils.isEmpty(UserLab.get().getPatientId())){
             mLoginPwdEt.setText(UserLab.get().getPatientId());
         }else {
-            mLoginPwdEt.setText("596db5428d6d81005784224e");
+            mLoginPwdEt.setText("59bb3977fe88c2005749d5d4");
         }
     }
 

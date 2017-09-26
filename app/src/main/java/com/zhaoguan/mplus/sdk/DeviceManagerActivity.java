@@ -7,19 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
-import com.libra.sinvoice.MyVoice;
 import com.lt.volley.http.VolleyResponse;
 import com.lt.volley.http.error.VolleyError;
 import com.zhaoguan.mplus.sdk.bean.DeviceInfoResponse;
-import com.zhaoguan.mplus.sdk.utils.ToastUtils;
 import com.zhaoguan.mpluslibs.MPlusDevice;
 import com.zhaoguan.mpluslibs.entity.UserLab;
-import com.zhaoguan.mpluslibs.entity.response.DeviceResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
