@@ -35,7 +35,8 @@
             android:name=".LoginActivity"
             android:description="@string/login" />
         <activity android:name=".DeviceConfigActivity" />
-        <activity android:name=".GetReportActivity"></activity>
+        <activity android:name=".GetReportActivity" />
+        <activity android:name=".SetAutoTimeActivity"></activity>
     </application>
 
 </manifest>

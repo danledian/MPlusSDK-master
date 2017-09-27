@@ -36,5 +36,6 @@ public class MPlusHttpConstants {
     public static final String GET_REPORTS_FOR_SDK_WITH_END_AND_BEGIN= "functions/getReportsForSDKWithEndAndBegin";
     public static final String GET_REPORTS_FOR_SDK_WITH_END_AND_CNT= "functions/getReportsForSDKWithEndAndCnt";
     public static final String GET_REPORTS_CNT_FOR_SDK_WITH_END_AND_BEGIN= "functions/getReportsCntForSDKWithEndAndBegin";
+    public static final String DEVICE = "classes/Device";
 
 }

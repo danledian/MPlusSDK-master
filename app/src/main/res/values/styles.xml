@@ -15,6 +15,13 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">15sp</item>
     </style>
+
+    <style name="DialogNoTitleFullScreen">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
     
 
 </resources>

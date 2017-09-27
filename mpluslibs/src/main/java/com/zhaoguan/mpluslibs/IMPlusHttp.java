@@ -27,6 +27,8 @@ public interface IMPlusHttp {
 
     Request getReportsCntForSDKWithEndAndBegin(String patientId, String begin, String end, VolleyResponse.Listener listener);
 
+    Request setAutoTestTime(String objectId, String period, VolleyResponse.Listener listener);
+
     MPlusHttpRequestBuilder getHttpRequestBuilder();
 
 }

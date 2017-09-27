@@ -8,12 +8,13 @@ import com.lt.volley.http.error.VolleyError;
 /**
  * Created by husong on 2017/6/27.
  */
-public class MPlusNotLoginError extends VolleyError {
-    public MPlusNotLoginError(Throwable cause) {
+public class MPlusVolleyError extends VolleyError {
+
+    public MPlusVolleyError(Throwable cause, int code, String message) {
         super(cause);
-        StatusLine statusLine = new StatusLine(204, "User not login Error");
+        StatusLine statusLine = new StatusLine(code, message);
         ResponseBody responseBody = new ResponseBody();
-        responseBody.setBytes("MPlusNotLoginError".getBytes());
+        responseBody.setBytes(message == null?"".getBytes():message.getBytes());
         mNetworkResponse = new NetworkResponse(statusLine, responseBody, null);
     }
 

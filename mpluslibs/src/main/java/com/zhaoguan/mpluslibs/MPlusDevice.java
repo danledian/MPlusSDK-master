@@ -74,14 +74,16 @@ public class MPlusDevice implements IMPlusDevice {
         return getMPlusObject(getHttpClient().getDeviceWithFactoryUserID(patientId, listener));
     }
 
+    @Override
+    public IMPlusObject setAutoTestTime(String patientId, String period, VolleyResponse.Listener response) {
+        MPlusDeviceRequest mPlusDeviceRequest = new MPlusDeviceRequest();
+        mPlusDeviceRequest.setAutoTestTime(patientId, period, response);
+        return getMPlusObject(mPlusDeviceRequest);
+    }
+
 //    @Override
 //    public IMPlusObject queryUpgradeInfo(String romVersion, String appVersion, VolleyResponse.Listener response) {
 //        return getMPlusObject(getHttpClient().getOta(MPlusConstants.USER_TYPE[1], romVersion, appVersion, response));
-//    }
-
-//    @Override
-//    public IMPlusObject setAutoTestTime(String deviceId, String period, VolleyResponse.Listener response) {
-//        return getMPlusObject(getHttpClient().setDeviceAutoPeriod(deviceId, period, response));
 //    }
 
 //    @Override
@@ -90,9 +92,6 @@ public class MPlusDevice implements IMPlusDevice {
 //        entity.setObjectId(deviceId);
 //        return getMPlusObject(getHttpClient().unbindDevice(entity, response));
 //    }
-
-
-
 
 //    @Override
 //    public IMPlusObject startSleep(String ip, VolleyResponse.Listener response) {

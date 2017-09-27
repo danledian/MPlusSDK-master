@@ -116,4 +116,11 @@ public class MPlusHttpClientImpl implements IMPlusHttp{
         mRequestQueue.add(request);
         return request;
     }
+
+    @Override
+    public Request setAutoTestTime(String patientId, String period, VolleyResponse.Listener listener) {
+        Request request = getHttpRequestBuilder().setAutoTestTime(patientId, period, listener);
+        mRequestQueue.add(request);
+        return request;
+    }
 }

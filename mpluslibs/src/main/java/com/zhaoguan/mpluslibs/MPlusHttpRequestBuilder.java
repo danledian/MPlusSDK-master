@@ -14,6 +14,7 @@ import com.zhaoguan.mpluslibs.entity.UserLab;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -154,6 +155,23 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
             e.printStackTrace();
         }
         Request request = createJsonRequest(MPlusHttpConstants.GET_REPORTS_CNT_FOR_SDK_WITH_END_AND_BEGIN, json.toString(), Request.Method.POST);
+        request.setResponse(listener);
+        return request;
+    }
+
+    @Override
+    public Request setAutoTestTime(String objectId, String period, VolleyResponse.Listener listener) {
+        authorized(objectId);
+        JSONObject json = new JSONObject();
+        try {
+            json.put("period", period);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(TextUtils.isEmpty(objectId))return null;
+        StringBuffer url = new StringBuffer();
+        url.append(MPlusHttpConstants.DEVICE).append("/").append(objectId);
+        Request request = createJsonRequest(url.toString(), json.toString(), Request.Method.PUT);
         request.setResponse(listener);
         return request;
     }

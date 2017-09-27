@@ -17,7 +17,6 @@
         android:id="@+id/set_auto_time_bt"
         android:onClick="onViewClicked"
         android:layout_margin="10dp"
-        android:visibility="gone"
         style="@style/Item_Style"/>
 
     <Button

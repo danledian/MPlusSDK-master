@@ -30,7 +30,7 @@ public interface IMPlusDevice {
 
 //    IMPlusObject queryUpgradeInfo(String romVersion, String appVersion, VolleyResponse.Listener response);
 
-//    IMPlusObject setAutoTestTime(String deviceId, String period, VolleyResponse.Listener response);
+    IMPlusObject setAutoTestTime(String patientId, String period, VolleyResponse.Listener response);
 
 //    IMPlusObject unbindDevice(String deviceId, VolleyResponse.Listener response);
 
