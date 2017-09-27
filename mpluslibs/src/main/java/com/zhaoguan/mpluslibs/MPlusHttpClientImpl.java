@@ -54,7 +54,7 @@ public class MPlusHttpClientImpl implements IMPlusHttp{
 
     private void add(Request request){
         if(request != null){
-            add(request);
+            mRequestQueue.add(request);
         }
     }
 

@@ -330,7 +330,7 @@ public final class ToastUtils {
      * @param args     参数
      */
     private static void show(final String format, final int duration, final Object... args) {
-        show(String.format(format, args), duration);
+        Toast.makeText(MPlusApplication.getContext(), String.format(format, args), duration).show();
     }
 
 
