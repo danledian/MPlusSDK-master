@@ -117,7 +117,7 @@ public class DeviceManagerActivity extends BActivity {
                 break;
             case R.id.set_auto_time_bt:
 
-
+                SetAutoTimeActivity.launch(this);
 //                showProgressDialog(R.string.loading);
 //
 //                MPlusDevice.get().queryInfoFromServer(UserLab.get().getPatientId(), new VolleyResponse.Listener() {

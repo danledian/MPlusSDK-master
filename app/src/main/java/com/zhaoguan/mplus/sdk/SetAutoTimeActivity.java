@@ -1,5 +1,6 @@
 package com.zhaoguan.mplus.sdk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -26,6 +27,11 @@ public class SetAutoTimeActivity extends BActivity {
 
     private static final long MAX_PERIOD = 12 * 60 * 60 * 1000;
     private static final long MIN_PERIOD = 4 * 60 * 60 * 1000;
+
+    public static void launch(BActivity activity){
+        Intent it = new Intent(activity, SetAutoTimeActivity.class);
+        activity.startActivity(it);
+    }
 
 
     @BindView(R.id.startTime_et)
