@@ -10,6 +10,7 @@ import com.lt.volley.http.retrypolicy.LowNetworkSpeedRetryPolicy;
 import com.lt.volley.http.retrypolicy.NormalNetworkSpeedRetryPolicy;
 import com.lt.volley.http.retrypolicy.RetryPolicy;
 import com.zhaoguan.mpluslibs.entity.UserLab;
+import com.zhaoguan.mpluslibs.exception.MPlusNotLoginError;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,11 +30,14 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     private static final String JSON = "json";
     private String baseUrl = MPlusHttpConstants.BASE_URL;
 
-    private void authorized(String patientId){
+    private boolean authorized(String patientId, VolleyResponse.Listener listener){
         if(TextUtils.isEmpty(UserLab.get().getFactoryCode()))
             throw new IllegalArgumentException("factoryCode is null");
-        if(TextUtils.isEmpty(patientId))
-            throw new IllegalArgumentException("patientId is null");
+        if(TextUtils.isEmpty(patientId)){
+            listener.onError(new MPlusNotLoginError(new IllegalArgumentException("user is not login")));
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -50,7 +54,9 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     @Override
     public Request login(String patientId, VolleyResponse.Listener listener) {
         String factoryCode = UserLab.get().getFactoryCode();
-        authorized(patientId);
+        if(!authorized(patientId, listener)){
+            return null;
+        }
         String json = String.format("{\"factoryCode\":\"%s\", \"patientId\":\"%s\"}", factoryCode, patientId);
         Request request = createJsonRequest(MPlusHttpConstants.LOGIN_FOR_SDK, json, Request.Method.POST);
         request.setResponse(listener);
@@ -60,7 +66,8 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     @Override
     public Request createDeviceWithUUID(String patientId, String UUID, VolleyResponse.Listener listener) {
         String factoryCode = UserLab.get().getFactoryCode();
-        authorized(patientId);
+        if(!authorized(patientId, listener))
+            return null;
         String json = String.format("{\"factoryCode\":\"%s\", \"patientId\":\"%s\", \"UUID\":\"%s\"}", factoryCode, patientId, UUID);
         Request request = createJsonRequest(MPlusHttpConstants.CREATE_DEVICE_WITH_UUID_FOR_SDK, json, Request.Method.POST);
         request.setResponse(listener);
@@ -81,7 +88,8 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     @Override
     public Request getDeviceWithFactoryUserID(String patientId, VolleyResponse.Listener listener) {
         String factoryCode = UserLab.get().getFactoryCode();
-        authorized(patientId);
+        if(!authorized(patientId, listener))
+            return null;
         String json = String.format("{\"factoryCode\":\"%s\", \"patientId\":\"%s\"}", factoryCode, patientId);
         Request request = createJsonRequest(MPlusHttpConstants.GET_DEVICE_WITH_FACTORY_USERID_FOR_SDK, json, Request.Method.POST);
         request.setResponse(listener);
@@ -91,7 +99,8 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     @Override
     public Request boundDeviceForClient(String patientId, String UUID, String deviceSN, String deviceID, VolleyResponse.Listener listener) {
         String factoryCode = UserLab.get().getFactoryCode();
-        authorized(patientId);
+        if(!authorized(patientId, listener))
+            return null;
         if(TextUtils.isEmpty(UUID) || TextUtils.isEmpty(deviceSN) || TextUtils.isEmpty(deviceID))
             throw new IllegalArgumentException("argument is null");
         String json = String.format("{\"factoryCode\":\"%s\", \"patientId\":\"%s\", \"UUID\":\"%s\", \"deviceSN\":\"%s\", \"deviceID\":\"%s\"}",
@@ -104,7 +113,8 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     @Override
     public Request getReportsForSDKWithEndAndBegin(String patientId, String begin, String end, VolleyResponse.Listener listener) {
         String factoryCode = UserLab.get().getFactoryCode();
-        authorized(patientId);
+        if(!authorized(patientId, listener))
+            return null;
         if(TextUtils.isEmpty(begin) || TextUtils.isEmpty(end))
             throw new IllegalArgumentException("argument is null");
         JSONObject json = new JSONObject();
@@ -124,7 +134,8 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     @Override
     public Request getReportsForSDKWithEndAndCnt(String patientId, String end, int count, VolleyResponse.Listener listener) {
         String factoryCode = UserLab.get().getFactoryCode();
-        authorized(patientId);
+        if(!authorized(patientId, listener))
+            return null;
         if (TextUtils.isEmpty(end))
             throw new IllegalArgumentException("end is null");
         JSONObject json = new JSONObject();
@@ -144,7 +155,8 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     @Override
     public Request getReportsCntForSDKWithEndAndBegin(String patientId, String begin, String end, VolleyResponse.Listener listener) {
         String factoryCode = UserLab.get().getFactoryCode();
-        authorized(patientId);
+        if(!authorized(patientId, listener))
+            return null;
         JSONObject json = new JSONObject();
         try {
             json.put("factoryCode", factoryCode);
@@ -160,17 +172,18 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     }
 
     @Override
-    public Request setAutoTestTime(String objectId, String period, VolleyResponse.Listener listener) {
-        authorized(objectId);
+    public Request setAutoTestTime(String patientId, String period, VolleyResponse.Listener listener) {
+        if(!authorized(patientId, listener))
+            return null;
         JSONObject json = new JSONObject();
         try {
             json.put("period", period);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(TextUtils.isEmpty(objectId))return null;
+        if(TextUtils.isEmpty(patientId))return null;
         StringBuffer url = new StringBuffer();
-        url.append(MPlusHttpConstants.DEVICE).append("/").append(objectId);
+        url.append(MPlusHttpConstants.DEVICE).append("/").append(patientId);
         Request request = createJsonRequest(url.toString(), json.toString(), Request.Method.PUT);
         request.setResponse(listener);
         return request;

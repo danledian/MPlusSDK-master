@@ -28,8 +28,6 @@ public class MPlusHttpClientImpl implements IMPlusHttp{
     private RequestQueue mRequestQueue;
     private MPlusHttpRequestBuilder mMPlusHttpRequestBuilder;
 
-
-
     public MPlusHttpClientImpl() {
         try {
             init();
@@ -54,73 +52,79 @@ public class MPlusHttpClientImpl implements IMPlusHttp{
         return mMPlusHttpRequestBuilder;
     }
 
+    private void add(Request request){
+        if(request != null){
+            add(request);
+        }
+    }
+
     @Override
     public Request register(VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().register(listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 
     @Override
     public Request login(String patientId, VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().login(patientId, listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 
     @Override
     public Request createDeviceWithUUID(String patientId, String UUID, VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().createDeviceWithUUID(patientId, UUID, listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 
     @Override
     public Request getDeviceWithUUID(String UUID, VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().getDeviceWithUUID(UUID, listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 
     @Override
     public Request getDeviceWithFactoryUserID(String patientId, VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().getDeviceWithFactoryUserID(patientId, listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 
     @Override
     public Request boundDeviceForClient(String patientId, String UUID, String deviceSN, String deviceID, VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().boundDeviceForClient(patientId, UUID, deviceSN, deviceID, listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 
     @Override
     public Request getReportsForSDKWithEndAndBegin(String patientId, String begin, String end, VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().getReportsForSDKWithEndAndBegin(patientId, begin, end, listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 
     @Override
     public Request getReportsForSDKWithEndAndCnt(String patientId, String end, int count, VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().getReportsForSDKWithEndAndCnt(patientId, end, count, listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 
     @Override
     public Request getReportsCntForSDKWithEndAndBegin(String patientId, String begin, String end, VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().getReportsCntForSDKWithEndAndBegin(patientId, begin, end, listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 
     @Override
     public Request setAutoTestTime(String patientId, String period, VolleyResponse.Listener listener) {
         Request request = getHttpRequestBuilder().setAutoTestTime(patientId, period, listener);
-        mRequestQueue.add(request);
+        add(request);
         return request;
     }
 }

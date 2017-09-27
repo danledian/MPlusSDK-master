@@ -13,7 +13,7 @@ public class MPlusNotLoginError extends VolleyError {
         super(cause);
         StatusLine statusLine = new StatusLine(204, "User not login Error");
         ResponseBody responseBody = new ResponseBody();
-        responseBody.setBytes("MPlusNotLoginError".getBytes());
+        responseBody.setBytes("MPlus Not Login Error".getBytes());
         mNetworkResponse = new NetworkResponse(statusLine, responseBody, null);
     }
 
