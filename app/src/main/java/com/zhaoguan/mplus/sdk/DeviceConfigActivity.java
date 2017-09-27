@@ -87,6 +87,7 @@ public class DeviceConfigActivity extends BActivity {
             public void onConfigSuccess(String response) {
                 Log.d(TAG, "onConfigSuccess" + response);
                 showToast("配置成功");
+                finish();
             }
         });
     }
