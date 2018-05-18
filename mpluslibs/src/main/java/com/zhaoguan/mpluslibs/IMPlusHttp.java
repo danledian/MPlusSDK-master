@@ -29,6 +29,8 @@ public interface IMPlusHttp {
 
     Request setAutoTestTime(String objectId, String period, VolleyResponse.Listener listener);
 
+    Request unbindDevice(String objectId, VolleyResponse.Listener listener);
+
     MPlusHttpRequestBuilder getHttpRequestBuilder();
 
 }

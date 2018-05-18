@@ -190,6 +190,23 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
     }
 
     @Override
+    public Request unbindDevice(String objectId, VolleyResponse.Listener listener) {
+        if(TextUtils.isEmpty(objectId))
+            throw new RuntimeException("objectId is null");
+        JSONObject json = new JSONObject();
+        try {
+            json.put("active", false);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        StringBuffer url = new StringBuffer();
+        url.append(MPlusHttpConstants.DEVICE).append("/").append(objectId);
+        Request request = createJsonRequest(url.toString(), json.toString(), Request.Method.PUT);
+        request.setResponse(listener);
+        return request;
+    }
+
+    @Override
     public MPlusHttpRequestBuilder getHttpRequestBuilder() {
         return null;
     }

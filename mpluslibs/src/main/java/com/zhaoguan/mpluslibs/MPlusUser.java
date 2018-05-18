@@ -15,11 +15,11 @@ import org.json.JSONObject;
  * Created by husong on 2017/6/28.
  */
 
-public class MPlusUser implements IMPlusUser{
+public class MPlusUser {
 
-    private static IMPlusUser mMPlusUser;
+    private static MPlusUser mMPlusUser;
 
-    public static IMPlusUser get(){
+    public static MPlusUser get(){
         if(mMPlusUser == null){
             synchronized (MPlusDevice.class){
                 if (mMPlusUser == null){
@@ -31,7 +31,6 @@ public class MPlusUser implements IMPlusUser{
     }
 
 
-    @Override
     public IMPlusObject register(final VolleyResponse.Listener listener) {
         return getMPlusObject(getHttpClient().register(listener));
     }
@@ -53,7 +52,6 @@ public class MPlusUser implements IMPlusUser{
 
     }
 
-    @Override
     public IMPlusObject login(String patientId, final VolleyResponse.Listener listener) {
         return getMPlusObject(getHttpClient().login(patientId, new VolleyResponse.Listener() {
             @Override
@@ -73,14 +71,12 @@ public class MPlusUser implements IMPlusUser{
     }
 
 
-    @Override
     public IMPlusHttp getHttpClient() {
         synchronized (this){
             return MPlusHttpClientImpl.get();
         }
     }
 
-    @Override
     public IMPlusObject getMPlusObject(Request request) {
         return new MPlusObject(request);
     }

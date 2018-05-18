@@ -127,4 +127,11 @@ public class MPlusHttpClientImpl implements IMPlusHttp{
         add(request);
         return request;
     }
+
+    @Override
+    public Request unbindDevice(String objectId, VolleyResponse.Listener listener) {
+        Request request = getHttpRequestBuilder().unbindDevice(objectId, listener);
+        add(request);
+        return request;
+    }
 }
