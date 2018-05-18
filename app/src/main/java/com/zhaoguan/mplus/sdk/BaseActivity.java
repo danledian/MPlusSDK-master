@@ -17,9 +17,9 @@ import java.io.UnsupportedEncodingException;
  * Created by husong on 2017/6/28.
  */
 
-public abstract class BActivity extends AppCompatActivity{
+public abstract class BaseActivity extends AppCompatActivity{
 
-    private static final String TAG = "BActivity";
+    private static final String TAG = "BaseActivity";
 
     private ProgressDialog mProgressDialog;
 

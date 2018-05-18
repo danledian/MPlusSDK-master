@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-public class MainActivity extends BActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {

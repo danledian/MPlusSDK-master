@@ -21,14 +21,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SetAutoTimeActivity extends BActivity {
+public class SetAutoTimeActivity extends BaseActivity {
 
     private static final String TAG = "SetAutoTimeActivity";
 
     private static final long MAX_PERIOD = 12 * 60 * 60 * 1000;
     private static final long MIN_PERIOD = 4 * 60 * 60 * 1000;
 
-    public static void launch(BActivity activity){
+    public static void launch(BaseActivity activity){
         Intent it = new Intent(activity, SetAutoTimeActivity.class);
         activity.startActivity(it);
     }

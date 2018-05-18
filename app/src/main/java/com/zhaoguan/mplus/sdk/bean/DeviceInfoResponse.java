@@ -1,12 +1,13 @@
 package com.zhaoguan.mplus.sdk.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by husong on 2017/7/7.
  */
 
-public class DeviceInfoResponse {
+public class DeviceInfoResponse implements Serializable{
 
 
     private List<ResultsBean> results;

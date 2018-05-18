@@ -17,12 +17,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DeviceConfigActivity extends BActivity {
+public class DeviceConfigActivity extends BaseActivity {
 
     private static final String TAG = "DeviceConfigActivity";
 
 
-    public static void launch(BActivity activity){
+    public static void launch(BaseActivity activity){
         Intent it = new Intent(activity, DeviceConfigActivity.class);
         activity.startActivity(it);
     }

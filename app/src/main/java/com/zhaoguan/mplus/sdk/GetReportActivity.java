@@ -18,13 +18,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GetReportActivity extends BActivity {
+public class GetReportActivity extends BaseActivity {
 
     private static final String TAG = "GetReportActivity";
 
 
 
-    public static void launch(BActivity activity){
+    public static void launch(BaseActivity activity){
         Intent it = new Intent(activity, GetReportActivity.class);
         activity.startActivity(it);
     }

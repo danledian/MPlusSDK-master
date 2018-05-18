@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BActivity {
+public class LoginActivity extends BaseActivity {
 
     @BindView(R.id.login_name_et)
     EditText mLoginNameEt;
@@ -36,7 +36,7 @@ public class LoginActivity extends BActivity {
     @BindView(R.id.content_tv)
     TextView mContentTv;
 
-    public static void launch(BActivity activity) {
+    public static void launch(BaseActivity activity) {
         Intent it = new Intent(activity, LoginActivity.class);
         activity.startActivity(it);
     }
@@ -62,7 +62,7 @@ public class LoginActivity extends BActivity {
         if (!TextUtils.isEmpty(UserLab.get().getPatientId())){
             mLoginPwdEt.setText(UserLab.get().getPatientId());
         }else {
-            mLoginPwdEt.setText("59bb3977fe88c2005749d5d4");
+            mLoginPwdEt.setText("5afcf4bf9f5454546f000f43");
         }
     }
 

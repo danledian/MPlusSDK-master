@@ -8,20 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.lt.volley.http.VolleyResponse;
 import com.lt.volley.http.error.VolleyError;
-import com.zhaoguan.mplus.sdk.bean.DeviceInfoResponse;
+import com.zhaoguan.mplus.sdk.utils.ToastUtils;
 import com.zhaoguan.mpluslibs.MPlusDevice;
 import com.zhaoguan.mpluslibs.entity.UserLab;
 
-import java.util.List;
+import org.json.JSONException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class DeviceManagerActivity extends BActivity {
+public class DeviceManagerActivity extends BaseActivity {
 
 
     private static final String TAG = "DeviceManagerActivity";
@@ -37,10 +36,12 @@ public class DeviceManagerActivity extends BActivity {
     @BindView(R.id.set_auto_time_bt)
     Button mSetAutoTimeBt;
 
-    public static void launch(BActivity activity) {
+    public static void launch(BaseActivity activity) {
         Intent it = new Intent(activity, DeviceManagerActivity.class);
         activity.startActivity(it);
     }
+
+    private String mDeviceInfo;
 
     @Override
     protected int getLayoutId() {
@@ -73,6 +74,7 @@ public class DeviceManagerActivity extends BActivity {
                         Log.d(TAG, String.format("deviceInfo:%s", s));
                         dismissProgressDialog();
                         mContentTv.setText(String.format("%s", s));
+                        mDeviceInfo = s;
                     }
 
                     @Override
@@ -87,62 +89,37 @@ public class DeviceManagerActivity extends BActivity {
                 break;
             case R.id.unbound_bt:
 
-//                Log.d(TAG, "click unbound_bt");
+                Log.d(TAG, "click unbound_bt");
 //
-//                showProgressDialog(R.string.loading);
-//
-//                MPlusDevice.get().queryInfoFromServer(UserLab.get().getPatientId(), new VolleyResponse.Listener() {
-//                    @Override
-//                    public void onSuccess(String s) {
-//                        Log.d(TAG, String.format("deviceInfo:%s", s));
-//                        if(TextUtils.isEmpty(s)){
-//                            return;
-//                        }
-//                        DeviceInfoResponse.ResultsBean bindDevice = getBindDevice(s);
-//
-//                        if(bindDevice == null){
-//                            dismissProgressDialog();
-//                            Toast.makeText(DeviceManagerActivity.this, "未绑定设备", Toast.LENGTH_SHORT).show();
-//                            return;
-//                        }
-//                        unbindMPlusDevice(bindDevice.getObjectId());
-//
-//                    }
-//
-//                    @Override
-//                    public void onError(VolleyError volleyError) {
-//                        handleResponseError(volleyError);
-//                    }
-//                });
+                if(TextUtils.isEmpty(mDeviceInfo)){
+                    ToastUtils.showShort("请先查询设备信息再解绑");
+                    return;
+                }
+
+                String objectId = getDeId(mDeviceInfo);
+                if(TextUtils.isEmpty(objectId)){
+                    ToastUtils.showShort("未绑定设备");
+                    return;
+                }
+                showProgressDialog(R.string.loading);
+
+                MPlusDevice.get().unbindDevice(objectId, new VolleyResponse.Listener() {
+                    @Override
+                    public void onSuccess(String s) {
+                        dismissProgressDialog();
+                        ToastUtils.showShort("解绑成功");
+                    }
+
+                    @Override
+                    public void onError(VolleyError volleyError) {
+                        handleResponseError(volleyError);
+                    }
+                });
+
                 break;
             case R.id.set_auto_time_bt:
 
                 SetAutoTimeActivity.launch(this);
-//                showProgressDialog(R.string.loading);
-//
-//                MPlusDevice.get().queryInfoFromServer(UserLab.get().getPatientId(), new VolleyResponse.Listener() {
-//                    @Override
-//                    public void onSuccess(String s) {
-//                        Log.d(TAG, String.format("deviceInfo:%s", s));
-//                        if(TextUtils.isEmpty(s)){
-//                            return;
-//                        }
-//                        DeviceInfoResponse.ResultsBean bindDevice = getBindDevice(s);
-//
-//                        if(bindDevice == null){
-//                            dismissProgressDialog();
-//                            Toast.makeText(DeviceManagerActivity.this, "未绑定设备", Toast.LENGTH_SHORT).show();
-//                            return;
-//                        }
-//
-//                        setAutoTime(bindDevice.getObjectId(), "21:15-09:00");
-//                    }
-//
-//                    @Override
-//                    public void onError(VolleyError volleyError) {
-//                        handleResponseError(volleyError);
-//                    }
-//                });
 
                 break;
             default:
@@ -150,65 +127,18 @@ public class DeviceManagerActivity extends BActivity {
         }
     }
 
-//    /**
-//     *
-//     * @param objectId
-//     * @param period  格式必须为：21:00-09:00
-//     */
-//    private void setAutoTime(String objectId, String period) {
-//
-//        Log.d(TAG, String.format("objectId:%s", objectId));
-//
-//        if(TextUtils.isEmpty(objectId))
-//            return;
-//
-//        MPlusDevice.get().setAutoTestTime(objectId, period, new VolleyResponse.Listener() {
-//            @Override
-//            public void onSuccess(String s) {
-//                dismissProgressDialog();
-//                Toast.makeText(DeviceManagerActivity.this, "设置成功", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onError(VolleyError volleyError) {
-//                handleResponseError(volleyError);
-//            }
-//        });
-//
-//    }
-
-    private DeviceInfoResponse.ResultsBean getBindDevice(String s){
-        List<DeviceInfoResponse.ResultsBean> deviceList = JSONObject.parseObject(s, DeviceInfoResponse.class).getResults();
-
-        DeviceInfoResponse.ResultsBean bindDevice = null;
-        for (DeviceInfoResponse.ResultsBean bean: deviceList){
-            if(bean.isActive() && !TextUtils.isEmpty(bean.getObjectId())){
-                bindDevice = bean;
-                break;
+    private String getDeId(String mDeviceInfo) {
+        try {
+            org.json.JSONObject jsonObject = new org.json.JSONObject(mDeviceInfo);
+            if(jsonObject.has("result")){
+                org.json.JSONObject jResult = jsonObject.getJSONObject("result");
+                return jResult.optString("objectId");
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return bindDevice;
+        return null;
     }
-
-//    private void unbindMPlusDevice(String objectId) {
-//
-//        Log.d(TAG, String.format("objectId:%s", objectId));
-//        MPlusDevice.get().unbindDevice(objectId, new VolleyResponse.Listener() {
-//            @Override
-//            public void onSuccess(String s) {
-//                dismissProgressDialog();
-//                Toast.makeText(DeviceManagerActivity.this, "解绑成功", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onError(VolleyError volleyError) {
-//                handleResponseError(volleyError);
-//            }
-//        });
-//    }
-
-
-
 
 
 }
