@@ -9,8 +9,7 @@ import com.zhaoguan.mpluslibs.exception.MPlusInitializeError;
 /**
  * Created by husong.
  */
-
-public class MPlusHttpClientImpl implements IMPlusHttp {
+public class MPlusHttpClientImpl implements IMPlusHttp{
 
     private static MPlusHttpClientImpl mMPlusHttpClientImpl;
 
@@ -149,4 +148,5 @@ public class MPlusHttpClientImpl implements IMPlusHttp {
     public Request directGetDeviceInfo(String ip, String type, VolleyResponse.Listener response) {
         return null;
     }
+
 }

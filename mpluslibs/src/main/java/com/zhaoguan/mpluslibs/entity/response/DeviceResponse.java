@@ -10,7 +10,7 @@ import org.json.JSONException;
 /**
  * Created by song on 2016/7/16.
  */
-public class DeviceResponse extends HttpBaseEntity {
+public class DeviceResponse extends HttpBaseEntity{
 
     private static final String TAG = "DeviceResponse";
     /**

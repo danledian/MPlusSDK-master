@@ -30,7 +30,6 @@
         android:text="@string/unbound"
         android:id="@+id/unbound_bt"
         android:onClick="onViewClicked"
-        android:visibility="gone"
         android:layout_margin="10dp"
         style="@style/Item_Style"/>
 

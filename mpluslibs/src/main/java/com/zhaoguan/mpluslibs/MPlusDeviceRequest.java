@@ -15,7 +15,7 @@ import org.json.JSONObject;
  * Created by husong on 2017/9/26.
  */
 
-public class MPlusDeviceRequest extends Request {
+public class MPlusDeviceRequest extends Request{
 
     private static final String TAG = "MPlusDeviceRequest";
 

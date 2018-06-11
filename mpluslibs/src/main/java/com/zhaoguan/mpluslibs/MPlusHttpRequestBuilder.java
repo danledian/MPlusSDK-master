@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by husong on 2017/7/20.
  */
 
-public class MPlusHttpRequestBuilder implements IMPlusHttp {
+public class MPlusHttpRequestBuilder implements IMPlusHttp{
 
     private static int mCurrentSpeed;
 
@@ -210,8 +210,8 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp {
         if(TextUtils.isEmpty(ip))
             throw new RuntimeException("Ip is null");
         Map<String, String> params = new HashMap<>();
-        params.put("type", )
-        createLocalRequest(String.format("http://%s", ip), )
+//        params.put("type", )
+//        createLocalRequest(String.format("http://%s", ip), )
         return null;
     }
 
