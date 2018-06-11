@@ -1,0 +1,69 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 3
+        versionName "1.2.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            moduleName "CRCLibrary"
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'armeabi-v7a'//, 'x86', 'x86_64', 'arm64-v8a'
+        }
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets.main {
+        jni.srcDirs = ['src/main/jni', 'src/main/jni/ESLib', 'src/main/jni/SinVoice']
+
+    }
+
+    //为了解决部分第三方库重复打包了META-INF的问题
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    lintOptions {
+        abortOnError false
+//        disable 'PrivateResource'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.alibaba:fastjson:1.2.33'
+    testCompile 'junit:junit:4.12'
+    compile files('libs/classes.jar')
+}
+
+task deleteOldJar(type: Delete) {
+    delete 'release/AndroidPlugin.jar'
+}
+
+//task to export contents as jar
+task exportJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('release/')
+    include('classes.jar')
+    ///Rename the jar
+    rename('classes.jar', 'AndroidPlugin.jar')
+}
+
+exportJar.dependsOn(deleteOldJar, build)
