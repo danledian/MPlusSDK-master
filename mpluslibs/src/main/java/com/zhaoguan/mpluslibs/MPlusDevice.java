@@ -98,9 +98,7 @@ public class MPlusDevice {
 //    }
 
     public IMPlusHttp getHttpClient() {
-        synchronized (this){
-            return MPlusHttpClientImpl.get();
-        }
+        return MPlusHttpClientImpl.get();
     }
 
     public IMPlusObject getMPlusObject(Request request) {
