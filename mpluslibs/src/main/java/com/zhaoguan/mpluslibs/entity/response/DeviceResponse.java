@@ -13,9 +13,6 @@ import org.json.JSONException;
 public class DeviceResponse extends HttpBaseEntity{
 
     private static final String TAG = "DeviceResponse";
-    /**
-     * result : {"breathRate":0,"versionNO":"1.4.4662","name":"梦加无线睡眠监护仪","romVersion":"1.2.2","monitorStatus":"0","rawDataUpload":false,"ledOnTime":-1,"sleepMusicSwitch":false,"active":false,"wifiName":"HUAWEI-PRO","period":"21:15-09:00","UUID":"970da4e2eae04de58ca42fe4eb8748bd","deviceSN":"M01B1607000305","localIP":"192.168.3.193","workStatus":"1","objectId":"59364cbbac502e0068bda80f","createdAt":"2017-06-06T06:33:31.068Z","updatedAt":"2017-07-20T07:46:08.663Z"}
-     */
 
     private ResultEntity result;
 
@@ -39,26 +36,6 @@ public class DeviceResponse extends HttpBaseEntity{
 
 
     public static class ResultEntity {
-        /**
-         * breathRate : 0
-         * versionNO : 1.4.4662
-         * name : 梦加无线睡眠监护仪
-         * romVersion : 1.2.2
-         * monitorStatus : 0
-         * rawDataUpload : false
-         * ledOnTime : -1
-         * sleepMusicSwitch : false
-         * active : false
-         * wifiName : HUAWEI-PRO
-         * period : 21:15-09:00
-         * UUID : 970da4e2eae04de58ca42fe4eb8748bd
-         * deviceSN : M01B1607000305
-         * localIP : 192.168.3.193
-         * workStatus : 1
-         * objectId : 59364cbbac502e0068bda80f
-         * createdAt : 2017-06-06T06:33:31.068Z
-         * updatedAt : 2017-07-20T07:46:08.663Z
-         */
 
         private int breathRate;
         private String versionNO;
