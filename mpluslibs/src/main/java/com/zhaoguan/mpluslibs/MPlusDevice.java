@@ -71,6 +71,10 @@ public class MPlusDevice {
         return getMPlusObject(mPlusDeviceRequest);
     }
 
+    public IMPlusObject directBindBluetoothDevice(String ip, String type, VolleyResponse.Listener response){
+        return getMPlusObject(getHttpClient().directBindBluetoothDevice(ip, type, response));
+    }
+
 //    @Override
 //    public IMPlusObject queryUpgradeInfo(String romVersion, String appVersion, VolleyResponse.Listener response) {
 //        return getMPlusObject(getHttpClient().getOta(MPlusConstants.USER_TYPE[1], romVersion, appVersion, response));

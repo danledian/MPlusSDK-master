@@ -2,8 +2,6 @@ package com.zhaoguan.mpluslibs;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 
 /**
  * Created by song on 2016/5/17.

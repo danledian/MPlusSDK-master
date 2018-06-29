@@ -1,5 +1,6 @@
 package com.zhaoguan.mpluslibs;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -43,6 +44,7 @@ public class MPlusDeviceConfigImpl implements IMPlusDeviceConfig, MyVoice.listen
 
     private IMPlusObject mBoundDeviceForClientRequest;
 
+    @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -75,7 +77,7 @@ public class MPlusDeviceConfigImpl implements IMPlusDeviceConfig, MyVoice.listen
 
     private void startVoiceConfigWifi(String wifiName, String wifiPwd, String deviceSn, MPlusConfigCallback callback) {
         if(!isUserLogin()){
-            callback.onFailure(201, "user is not login");
+            callback.onFailure(201, "User is not login");
             return;
         }
         if(TextUtils.isEmpty(wifiName)){
