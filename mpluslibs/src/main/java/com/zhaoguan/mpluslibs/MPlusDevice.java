@@ -80,15 +80,13 @@ public class MPlusDevice {
         return getMPlusObject(getHttpClient().unbindDevice(deviceId, response));
     }
 
-//    @Override
-//    public IMPlusObject startSleep(String ip, VolleyResponse.Listener response) {
-//        return getMPlusObject(getHttpClient().startSleep(ip, UserLab.get().getPatientId(), response));
-//    }
-//
-//    @Override
-//    public IMPlusObject stopSleep(String ip, VolleyResponse.Listener response) {
-//        return getMPlusObject(getHttpClient().stopSleep(ip, response));
-//    }
+    public IMPlusObject startSleep(String idPatient, String ip, VolleyResponse.Listener response) {
+        return getMPlusObject(getHttpClient().startSleep(idPatient, ip, response));
+    }
+
+    public IMPlusObject stopSleep(String idPatient, String ip, VolleyResponse.Listener response) {
+        return getMPlusObject(getHttpClient().stopSleep(idPatient, ip, response));
+    }
 //
 //    @Override
 //    public IMPlusObject queryInfoFromDevice(String ip, VolleyResponse.Listener response) {

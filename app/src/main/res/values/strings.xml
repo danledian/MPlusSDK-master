@@ -22,6 +22,13 @@
     <string name="period_format_error">格式不正确</string>
     <string name="period_tips">时间间隔为4-12小时</string>
     <string name="save_success">保存成功</string>
+    <string name="start_monitor">开启监测</string>
+    <string name="stop_monitor">结束监测</string>
+    <string name="start_monitor_success">开启监测成功</string>
+    <string name="start_monitor_failure">开启监测失败</string>
+    <string name="stop_monitor_success">结束监测成功</string>
+    <string name="stop_monitor_failure">结束监测失败</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

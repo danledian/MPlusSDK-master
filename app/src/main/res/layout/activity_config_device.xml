@@ -27,6 +27,21 @@
         style="@style/Item_Style"/>
 
     <Button
+        android:text="@string/start_monitor"
+        android:id="@+id/start_monitor_bt"
+        android:onClick="onViewClicked"
+        android:layout_margin="10dp"
+        style="@style/Item_Style"/>
+
+    <Button
+        android:text="@string/stop_monitor"
+        android:id="@+id/stop_monitor_bt"
+        android:onClick="onViewClicked"
+        android:layout_margin="10dp"
+        style="@style/Item_Style"/>
+
+
+    <Button
         android:text="@string/unbound"
         android:id="@+id/unbound_bt"
         android:onClick="onViewClicked"

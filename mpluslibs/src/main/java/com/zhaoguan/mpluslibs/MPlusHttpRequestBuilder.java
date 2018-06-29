@@ -19,6 +19,9 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.zhaoguan.mpluslibs.MPlusHttpConstants.START_SLEEP;
+import static com.zhaoguan.mpluslibs.MPlusHttpConstants.STOP_SLEEP;
+
 /**
  * Created by husong on 2017/7/20.
  */
@@ -203,6 +206,38 @@ public class MPlusHttpRequestBuilder implements IMPlusHttp{
         url.append(MPlusHttpConstants.DEVICE).append("/").append(objectId);
         Request request = createJsonRequest(url.toString(), json.toString(), Request.Method.PUT);
         request.setResponse(listener);
+        return request;
+    }
+
+    @Override
+    public Request startSleep(String patientId, String ip, VolleyResponse.Listener listener) {
+        if(TextUtils.isEmpty(patientId) || TextUtils.isEmpty(ip))
+            throw new RuntimeException("patientId or ip is null");
+        Map<String, String> params = new HashMap<>();
+        params.put("patientId", patientId);
+        Request request = new Request.Builder()
+                .setMethod(Request.Method.GET)
+                .setParams(params)
+                .setUrl(String.format("http://%s:8080%s", ip, START_SLEEP))
+                .build();
+        request.setResponse(listener);
+        request.setRetryPolicy(new NormalNetworkSpeedRetryPolicy());
+        return request;
+    }
+
+    @Override
+    public Request stopSleep(String patientId, String ip, VolleyResponse.Listener listener) {
+        if(TextUtils.isEmpty(patientId) || TextUtils.isEmpty(ip))
+            throw new RuntimeException("patientId or ip is null");
+        Map<String, String> params = new HashMap<>();
+        params.put("patientId", patientId);
+        Request request = new Request.Builder()
+        .setMethod(Request.Method.GET)
+        .setParams(params)
+        .setUrl(String.format("http://%s:8080%s", ip, STOP_SLEEP))
+        .build();
+        request.setResponse(listener);
+        request.setRetryPolicy(new NormalNetworkSpeedRetryPolicy());
         return request;
     }
 

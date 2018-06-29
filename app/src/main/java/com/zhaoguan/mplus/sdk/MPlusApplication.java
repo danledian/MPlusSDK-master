@@ -18,7 +18,7 @@ public class MPlusApplication extends Application{
         super.onCreate();
         mContext = this;
 
-        MPlusClient.initialize(this, "fe55153aa77f42c190b589ae63a87b05", "");
+        MPlusClient.initialize(this, "dbef6584097b4e6290538d8260a391df", "");
     }
 
     public static Context getContext() {

@@ -62,7 +62,7 @@ public class LoginActivity extends BaseActivity {
         if (!TextUtils.isEmpty(UserLab.get().getPatientId())){
             mLoginPwdEt.setText(UserLab.get().getPatientId());
         }else {
-            mLoginPwdEt.setText("5afcf4bf9f5454546f000f43");
+            mLoginPwdEt.setText("5b32f92b9f5454003bf1800d");
         }
     }
 

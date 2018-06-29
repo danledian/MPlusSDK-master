@@ -18,7 +18,6 @@ public class MainActivity extends BaseActivity {
 
 //        Test.test();
 
-        Log.d("TEST", "test");
     }
 
     public void onViewClicked(View view) {

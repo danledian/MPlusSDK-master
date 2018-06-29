@@ -58,7 +58,7 @@ public class DeviceConfigActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         WifiManager manager = (WifiManager) MPlusApplication.getContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        if(manager.getConnectionInfo() != null){
+        if(manager != null && manager.getConnectionInfo() != null){
             String ssid = manager.getConnectionInfo().getSSID();
             mWifiNameEt.setText(ssid.substring(1, ssid.length() - 1));
         }

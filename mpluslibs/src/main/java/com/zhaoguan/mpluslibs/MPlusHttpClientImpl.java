@@ -134,4 +134,18 @@ public class MPlusHttpClientImpl implements IMPlusHttp{
         add(request);
         return request;
     }
+
+    @Override
+    public Request startSleep(String patientId, String ip, VolleyResponse.Listener listener) {
+        Request request = getHttpRequestBuilder().startSleep(patientId, ip , listener);
+        add(request);
+        return request;
+    }
+
+    @Override
+    public Request stopSleep(String patientId, String ip, VolleyResponse.Listener listener) {
+        Request request = getHttpRequestBuilder().stopSleep(patientId, ip, listener);
+        add(request);
+        return request;
+    }
 }

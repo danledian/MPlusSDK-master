@@ -31,6 +31,10 @@ public interface IMPlusHttp {
 
     Request unbindDevice(String objectId, VolleyResponse.Listener listener);
 
+    Request startSleep(String patientId, String ip, VolleyResponse.Listener listener);
+
+    Request stopSleep(String patientId, String ip, VolleyResponse.Listener listener);
+
     MPlusHttpRequestBuilder getHttpRequestBuilder();
 
 }
